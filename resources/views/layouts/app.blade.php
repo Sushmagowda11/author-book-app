@@ -9,6 +9,8 @@
         body {
             background-color: #f5f7fa;
             font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 100px; /* Space for the footer */
+            padding-bottom: 100px; /* Ensure space for footer */
         }
         .navbar {
             background-color: #4CAF50;
@@ -36,11 +38,12 @@
             margin: 0;
         }
 
+        /* Chatbot Icon */
         .chatbot-icon {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #4CAF50;
+            bottom: 120px; /* Positioned above the footer */
+            right: 30px;  /* Positioned to the right */
+            background-color: #ff5733; /* Contrasting color */
             color: white;
             border-radius: 50%;
             width: 60px;
@@ -48,20 +51,50 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
+            font-size: 28px; /* Icon size */
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 999;
+            z-index: 1000; /* Ensures the chatbot icon stays above content */
             transition: background-color 0.3s ease;
         }
 
         .chatbot-icon:hover {
-            background-color: #45a049;
+            background-color: #e64a19; /* Darker orange on hover */
         }
 
         .chatbot-icon a {
             color: white;
             text-decoration: none;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0; /* Smaller footer */
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 500; /* Ensure the footer is below the chatbot icon */
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #ffd700;
+        }
+
+        /* Tooltip Styling */
+        .tooltip-inner {
+            background-color: #333;
+            color: white;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -87,16 +120,32 @@
     </div>
 
     <!-- Chatbot Icon -->
-    <div class="chatbot-icon">
+    <div class="chatbot-icon" data-toggle="tooltip" data-placement="left" title="How can I assist you today? Ask me anything about authors and books!">
         <a href="{{ url('/chatbot') }}" title="Chat with us">
             <i class="fas fa-comments"></i>
         </a>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Authors and Books Portal. All rights reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact</a>
+        </p>
+    </footer>
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Initialize tooltips
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>
